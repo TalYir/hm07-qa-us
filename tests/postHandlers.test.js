@@ -2,14 +2,13 @@
 const config = require('../config');
 
 const requestBody = {    
-	"firstName": "Max",
-    "phone": "+10005553535",
-    "address": "8042 Lancaster Ave.Hamburg, NY"
+	"id": 1,
+	"name": "My card"
 }
 test('should return a successfull status code', async () => {
 	let actualStatus;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/users`, {
+		const response = await fetch(`${config.API_URL}/api/v1/cards`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json'
@@ -24,15 +23,14 @@ test('should return a successfull status code', async () => {
 });
 // POSTtest2 Checking that the response body contains the expected data
 const RequestBody = {    
-	"firstName": "Max",
-    "phone": "+10005553535",
-    "address": "8042 Lancaster Ave.Hamburg, NY"
+		"id": 1,
+		"name": "My card"
 }
 
 test('should contain the expected data in the response body', async () => {
 	let actualResponseBody;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/users`, {
+		const response = await fetch(`${config.API_URL}/api/v1/cards`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json'
@@ -43,5 +41,5 @@ test('should contain the expected data in the response body', async () => {
 	} catch (error) {
 		console.error(error);
 	}
-	expect(actualResponseBody["authToken"]).toBe("110d8f69-e230-4c7b-9b56-cfc68ce0660b");
+	expect(actualResponseBody.name).toBe("My card");
 });
